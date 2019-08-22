@@ -32,6 +32,10 @@ Route::delete('/blogs/{id}/delete', 'BlogsController@delete')->name('blogs.delet
 //Admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 
+//Categories Resource Route
+
+Route::resource('/category', 'CategoryController');
+
 
 
 Auth::routes();
