@@ -34,7 +34,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 
 //Categories Resource Route
 
-Route::resource('/category', 'CategoryController');
+Route::resource('/categories', 'CategoryController');
 
 
 
