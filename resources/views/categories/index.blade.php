@@ -3,7 +3,7 @@
 
 
 <h2>
-    <a href="#">{{ $category->name }}</a>
+    <a href="{{route('categories.show', $category->slug)}}">{{ $category->name }}</a>
 </h2>
 
 @endforeach
