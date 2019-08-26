@@ -25,7 +25,10 @@ class BlogsController extends Controller
     {
         $input = $request->all();
         $blog = Blog::create($input);
-        $blog->save();
+        if($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
+        // $blog->save();
         return redirect('/blogs');
     }
 
