@@ -25,7 +25,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -38,6 +38,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="{{ route('admin.index') }}">Admin</a></li>
+                        <li><a class="nav-link" href="{{ route('categories.index') }}">Categories</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
