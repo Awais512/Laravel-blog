@@ -18,8 +18,8 @@
             </div>
 
             <div class="form-group form-check form-check-inline">
-                @foreach ($categories as $category )
-                <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-check-input">
+                {{ $blog->category->count() ? 'Current Categories ': '' }} &nbsp; @foreach ($blog->category as $category )
+                <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-check-input" checked>
                 <label class="form-check-label btn-margin-right">{{$category->name}}</label> @endforeach
             </div>
 
