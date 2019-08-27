@@ -40,8 +40,9 @@ class BlogsController extends Controller
 
     public function edit($id) 
     {
+        $categories = Category::latest()->get();
         $blog = Blog::findOrFail($id);
-        return view('blogs.edit', compact('blog'));
+        return view('blogs.edit', ['blog'=> $blog, 'categories'=>$categories]);
     }
 
     public function update(Request $request, $id) 
@@ -49,6 +50,9 @@ class BlogsController extends Controller
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
+        if($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
         return redirect('blogs');
     }
 

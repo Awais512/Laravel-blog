@@ -21,6 +21,7 @@
                 <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-check-input">
                 <label class="form-check-label btn-margin-right">{{$category->name}}</label> @endforeach
             </div>
+
             <div>
                 <button class="btn btn-primary" type="submit">Create New Blog</button>
             </div> {{ csrf_field() }}
