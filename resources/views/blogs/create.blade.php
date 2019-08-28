@@ -21,7 +21,10 @@
                 <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-check-input">
                 <label class="form-check-label btn-margin-right">{{$category->name}}</label> @endforeach
             </div>
-
+            <div class="form-group">
+                <label for="featured_image">Featured Image</label>
+                <input class="form-control" type="file" name="featured_name">
+            </div>
             <div>
                 <button class="btn btn-primary" type="submit">Create New Blog</button>
             </div> {{ csrf_field() }}
