@@ -5,7 +5,7 @@
         <h1>Create a New Blog</h1>
     </div>
     <div class="col-md-12">
-        <form action="{{ route('blogs.store') }}" method="POST">
+        <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control">
@@ -21,6 +21,8 @@
                 <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-check-input">
                 <label class="form-check-label btn-margin-right">{{$category->name}}</label> @endforeach
             </div>
+
+
             <div class="form-group">
                 <label for="featured_image">Featured Image</label>
                 <input class="form-control" type="file" name="featured_name">

@@ -24,6 +24,13 @@ class BlogsController extends Controller
     public function store(Request $request) 
     {
         $input = $request->all();
+        //Image Upload
+        if($file = $request->file('featured_name')) {
+            
+           $name= uniqid() . $file->getClientOriginalName();
+           $file->move('images/featured_image/');
+           $input['featured_image'] = $name;
+        }
         $blog = Blog::create($input);
         if($request->category_id) {
             $blog->category()->sync($request->category_id);
