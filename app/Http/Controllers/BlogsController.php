@@ -17,56 +17,56 @@ class BlogsController extends Controller
 
     public function create()
     {
-        $categories = Category::latest()->get(); 
+        $categories = Category::latest()->get();
         return view('blogs.create', compact('categories'));
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $input = $request->all();
         //Image Upload
-        if($file = $request->file('featured_name')) {
-            
-           $name= uniqid() . $file->getClientOriginalName();
-           $file->move('images/featured_image/');
-           $input['featured_image'] = $name;
+        if ($file = $request->file('featured_name')) {
+            $destination = 'images/featured_image';
+            $name = uniqid() . $file->getClientOriginalName();
+            $file->move($destination, $name);
+            $input['featured_image'] = $destination . '/' . $name;
         }
         $blog = Blog::create($input);
-        if($request->category_id) {
+        if ($request->category_id) {
             $blog->category()->sync($request->category_id);
         }
         // $blog->save();
         return redirect('/blogs');
     }
 
-    public function show($id) 
+    public function show($id)
     {
         $blog = Blog::findOrFail($id);
         return view('blogs.show', compact('blog'));
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $categories = Category::latest()->get();
         $blog = Blog::findOrFail($id);
 
         $bc = array();
-        foreach($blog->category as $c){
-            $bc[] = $c->id-1;
+        foreach ($blog->category as $c) {
+            $bc[] = $c->id - 1;
         }
 
         $filtered = array_except($categories, $bc);
 
 
-        return view('blogs.edit', ['blog'=> $blog, 'categories'=>$categories, 'filtered' => $filtered]);
+        return view('blogs.edit', ['blog' => $blog, 'categories' => $categories, 'filtered' => $filtered]);
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
-        if($request->category_id) {
+        if ($request->category_id) {
             $blog->category()->sync($request->category_id);
         }
         return redirect('blogs');
@@ -79,7 +79,7 @@ class BlogsController extends Controller
         return redirect('blogs');
     }
 
-    public function trash() 
+    public function trash()
     {
         $trashedBlogs = Blog::onlyTrashed()->get();
         return view('blogs.trash', compact('trashedBlogs'));
@@ -92,9 +92,10 @@ class BlogsController extends Controller
         return redirect('blogs');
     }
 
-    public function permanentDelete($id) {
-		$permanentDeleteBlog = Blog::onlyTrashed()->findOrFail($id);
-		$permanentDeleteBlog->forceDelete($permanentDeleteBlog);
-		return redirect('blogs');
-	}
+    public function permanentDelete($id)
+    {
+        $permanentDeleteBlog = Blog::onlyTrashed()->findOrFail($id);
+        $permanentDeleteBlog->forceDelete($permanentDeleteBlog);
+        return redirect('blogs');
+    }
 }

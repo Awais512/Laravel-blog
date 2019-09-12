@@ -4,6 +4,13 @@
     <article>
         <div class="jumbotron">
             <div class="col-md-12">
+                @if($blog->featured_image)
+
+                <img src="<?php echo url('/').'/'.$blog->featured_image;  ?>" alt="{{ str_limit($blog->title, 50) }}" class="img-responsive featured_image"><br/>                @endif
+            </div>
+
+
+            <div class="col-md-12">
                 <h1>{{$blog->title}}</h1>
             </div>
 
