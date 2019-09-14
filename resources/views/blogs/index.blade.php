@@ -1,5 +1,6 @@
 @extends('layouts.app') 
-@section('content') @foreach ($blogs as $blog )
+@section('content')
+    @include('partials.meta_static') @foreach ($blogs as $blog )
 
 
 <h2>
