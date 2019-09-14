@@ -15,7 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        view::composer('partials.meta_dynamic', function ($view) {
+        View::composer('partials.meta_dynamic', function ($view) {
             $view->with('blog', Blog::all());
         });
     }
