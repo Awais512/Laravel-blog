@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Providers;
+
+use App\Blog;
+
+use Illuminate\Support\ServiceProvider;
+
+class ComposerServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        view::composer('partials.meta_dynamic', function ($view) {
+            $view->with('blog', Blog::all());
+        });
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
